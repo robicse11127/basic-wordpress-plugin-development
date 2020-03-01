@@ -24,7 +24,7 @@ if( is_admin() ) {
 }
 
 /**
- * Include public.php
+ * Include public.php 
  */
 if( !is_admin() ) {
     require_once MYPLUGIN_PATH . '/public/public.php';
