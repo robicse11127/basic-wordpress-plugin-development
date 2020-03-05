@@ -29,3 +29,8 @@ if( is_admin() ) {
 if( !is_admin() ) {
     require_once MYPLUGIN_PATH . '/public/public.php';
 }
+
+/**
+ * Include Post Types
+ */
+require_once MYPLUGIN_PATH . '/inc/post-types/movie.php';
