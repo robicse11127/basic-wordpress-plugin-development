@@ -34,3 +34,8 @@ if( !is_admin() ) {
  * Include Post Types
  */
 require_once MYPLUGIN_PATH . '/inc/post-types/movie.php';
+
+/**
+ * Inclide Taxonomies
+ */
+require_once MYPLUGIN_PATH . '/inc/taxonomies/movie-taxonomy.php';
