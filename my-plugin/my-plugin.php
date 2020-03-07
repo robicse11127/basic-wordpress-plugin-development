@@ -39,3 +39,8 @@ require_once MYPLUGIN_PATH . '/inc/post-types/movie.php';
  * Inclide Taxonomies
  */
 require_once MYPLUGIN_PATH . '/inc/taxonomies/movie-taxonomy.php';
+
+/**
+ * Include Metaboxes
+ */
+require_once MYPLUGIN_PATH . '/inc/metaboxes/movie-metaboxes.php';
