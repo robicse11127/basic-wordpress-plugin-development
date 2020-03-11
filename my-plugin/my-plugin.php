@@ -49,3 +49,8 @@ require_once MYPLUGIN_PATH . '/inc/metaboxes/movie-metaboxes.php';
  * Inlcudes Data Tables
  */
 require_once MYPLUGIN_PATH . '/inc/data-tables/movie-data-table.php';
+
+/**
+ * Include Admin Menus
+ */
+require_once MYPLUGIN_PATH . '/inc/menus/menus.php';
