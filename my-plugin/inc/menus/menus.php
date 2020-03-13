@@ -41,6 +41,33 @@ function myplugin_custom_admin_menu() {
         'myplugin_custom_link_template_callback'
     );
 
+    add_submenu_page(
+        'tools.php',
+        __( 'Custom Link', 'my-plugin' ),
+        __( 'Custom Link', 'my-plugin' ),
+        'manage_options',
+        'custom-tool-link',
+        'myplugin_custom_tool_link_template_callback'
+    );
+
+    add_submenu_page(
+        'options-general.php',
+        __( 'Custom Link', 'my-plugin' ),
+        __( 'Custom Link', 'my-plugin' ),
+        'manage_options',
+        'custom-option-link',
+        'myplugin_custom_option_link_template_callback'
+    );
+    
+    add_submenu_page(
+        'edit.php?post_type=page',
+        __( 'Custom Link', 'my-plugin' ),
+        __( 'Custom Link', 'my-plugin' ),
+        'manage_options',
+        'custom-theme-link',
+        'myplugin_custom_option_link_template_callback'
+    );
+
 }
 add_action( 'admin_menu', 'myplugin_custom_admin_menu' );
 
@@ -71,3 +98,52 @@ function myplugin_custom_link_template_callback() {
     <h4>Hello, I am from the custom link template!!!</h4>
     <?php 
 }
+
+/**
+ * Custom Tool Link Template Callback
+ */
+function myplugin_custom_tool_link_template_callback() {
+    ?>
+    <h2>Hey I am form the custom tool link!!</h2>
+    <?php 
+}
+
+
+/**
+ * Custom Tool Link Template Callback
+ */
+function myplugin_custom_option_link_template_callback() {
+    ?>
+    <h2>Hey I am from the custom option link!!</h2>
+    <?php 
+}
+
+
+/**
+ * Add Custom Menus into Admin Toolbar
+ */
+function myplugin_custom_admin_toolbar_links($admin_bar) {
+
+    $admin_bar->add_menu(array(
+        'id' => 'my-item',
+        'title' => 'My Item',
+        'href' => '#',
+        'meta' => array(
+            'title' => 'My Title'
+        )
+    ));
+
+    $admin_bar->add_menu(array(
+        'id' => 'my-first-item',
+        'parent' => 'my-item',
+        'title' => 'My Submenu Item',
+        'href' => '#',
+        'meta' => array(
+            'title' => 'My Submenu Title',
+            'target' => '_blank',
+            'class' => 'my_custom_class'
+        )
+    ));
+
+}
+add_action( 'admin_bar_menu', 'myplugin_custom_admin_toolbar_links', 100 );
