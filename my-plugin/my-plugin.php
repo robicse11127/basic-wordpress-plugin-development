@@ -54,3 +54,8 @@ require_once MYPLUGIN_PATH . '/inc/data-tables/movie-data-table.php';
  * Include Admin Menus
  */
 require_once MYPLUGIN_PATH . '/inc/menus/menus.php';
+
+/**
+ * Include Settings Page
+ */
+require_once MYPLUGIN_PATH . '/inc/settings/settings.php';
