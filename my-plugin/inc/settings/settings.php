@@ -5,7 +5,7 @@
  */
 function myplugin_settings_menu() {
 
-    add_menu_page(
+    $hook = add_menu_page(
         __( 'MyPlugin Settings', 'my-plugin' ),
         __( 'MyPlugin Settings', 'my-plugin' ),
         'manage_options',
@@ -15,8 +15,19 @@ function myplugin_settings_menu() {
         null
     );
 
+    add_action( 'admin_head-'.$hook, 'myplugin_image_uplaoder_assets', 10, 1 );
 }
 add_action('admin_menu', 'myplugin_settings_menu');
+
+/**
+ * Enqueue Image Uploader Assets
+ */
+function myplugin_image_uplaoder_assets() {
+    wp_enqueue_media();
+    wp_enqueue_style( 'myplugin-image-uplaoder');
+    wp_enqueue_script( 'myplugin-image-uploader' );
+}
+
 
 /**
  * Settings Template Page
@@ -135,9 +146,59 @@ function myplugin_settings_init() {
         'myplugin_settings_section'
     );
 
+    // Register checkbox field
+    register_setting(
+        'myplugin-settings-page',
+        'myplugin_settings_checkbox_field',
+        array(
+            'type' => 'string',
+            'sanitize_callback' => 'sanitize_key',
+            'default' => ''
+        )
+    );
+
+    // Add checkbox fields
+    add_settings_field(
+        'myplugin_settings_checkbox_field',
+        __( 'Checkbox Field', 'my-plugin' ),
+        'myplugin_settings_checkbox_field_callback',
+        'myplugin-settings-page',
+        'myplugin_settings_section'
+    );
+
+    // Register image uploader field
+    register_setting(
+        'myplugin-settings-page',
+        'myplugin_settings_image_uploader_field',
+        array(
+            'type' => 'integer',
+            'sanitize_callback' => 'sanitize_image_uploader',
+            'default' => ''
+        )
+    );
+
+    // Add radio fields
+    add_settings_field(
+        'myplugin_settings_image_uploader_field',
+        __( 'Image Uplaoder', 'my-plugin' ),
+        'myplugin_settings_image_uploader_field_callback',
+        'myplugin-settings-page',
+        'myplugin_settings_section'
+    );
+
 }
 add_action( 'admin_init', 'myplugin_settings_init' );
 
+/**
+ * Sanitize Image Uploader
+ */
+function sanitize_image_uploader( $value ) {
+    if(isset($value)) {
+        return intval($value);
+    }else {
+        return false;
+    }
+}
 
 /**
  * txt tempalte
@@ -187,4 +248,35 @@ function myplugin_settings_radio_field_callback() {
         <input type="radio" name="myplugin_settings_radio_field" value="value2" <?php checked( 'value2', $myplugin_radio_field ); ?>/> Value 2
     </label>
     <?php
+}
+
+/**
+ * Chekcbox Tempalte
+ */
+function myplugin_settings_checkbox_field_callback() {
+    $myplugin_checkbox_field = get_option('myplugin_settings_checkbox_field');
+    ?>
+    <label for="">
+        <input type="checkbox" name="myplugin_settings_checkbox_field" value="yes" <?php checked( 'yes', $myplugin_checkbox_field ); ?>/> Please check to confirm!
+    </label>
+    <?php 
+}
+
+/**
+ * Image Uploader Template
+ */
+function myplugin_settings_image_uploader_field_callback() {
+
+    $myplugin_image_id = get_option('myplugin_settings_image_uploader_field');
+
+    ?>
+    <div class="myplugin-upload-wrap">
+        <img data-src="" src="<?php echo esc_url(wp_get_attachment_url(isset($myplugin_image_id) ? (int) $myplugin_image_id : 0)); ?>" width="250" />
+        <div class="myplugin-upload-action">
+            <input type="hidden" name="myplugin_settings_image_uploader_field" value="<?php echo esc_attr(isset($myplugin_image_id) ? (int) $myplugin_image_id : 0); ?>" />
+            <button type="button" class="upload_image_button"><span class="dashicons dashicons-plus"></span></button>
+            <button type="button" class="remove_image_button"><span class="dashicons dashicons-minus"></span></button>
+        </div>
+    </div>
+    <?php 
 }
