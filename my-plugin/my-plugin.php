@@ -59,3 +59,8 @@ require_once MYPLUGIN_PATH . '/inc/menus/menus.php';
  * Include Settings Page
  */
 require_once MYPLUGIN_PATH . '/inc/settings/settings.php';
+
+/**
+ * Include Shortcodes
+ */
+require_once MYPLUGIN_PATH . '/inc/shortcodes/shortcodes.php';
