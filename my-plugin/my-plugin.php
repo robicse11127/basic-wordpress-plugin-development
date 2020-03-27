@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Plugin Name: My Plugin
  * Plugin URI: http://my-plugin.com
@@ -64,3 +64,9 @@ require_once MYPLUGIN_PATH . '/inc/settings/settings.php';
  * Include Shortcodes
  */
 require_once MYPLUGIN_PATH . '/inc/shortcodes/shortcodes.php';
+
+
+/**
+ * Include Custom Dashboard Widgets
+ */
+require_once MYPLUGIN_PATH . '/inc/dashboard/widgets.php';

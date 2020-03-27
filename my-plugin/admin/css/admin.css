@@ -1,0 +1,10 @@
+#myplugin_movie_dash_widget ul {
+    display: inline-block;
+    margin: 0;
+    width: 100%;
+}
+#myplugin_movie_dash_widget ul li {
+    display: block;
+    width: 50%;
+    float: left;
+}
