@@ -65,8 +65,12 @@ require_once MYPLUGIN_PATH . '/inc/settings/settings.php';
  */
 require_once MYPLUGIN_PATH . '/inc/shortcodes/shortcodes.php';
 
-
 /**
  * Include Custom Dashboard Widgets
  */
 require_once MYPLUGIN_PATH . '/inc/dashboard/widgets.php';
+
+/**
+ * Include WordPress Custom WIdgets
+ */
+require_once MYPLUGIN_PATH . '/inc/widgets/movie-widget.php';

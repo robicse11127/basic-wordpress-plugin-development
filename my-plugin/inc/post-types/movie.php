@@ -94,7 +94,7 @@ add_action( 'init', 'myplugin_movie_post_type' );
 /**
  * Update title placeholder
  */
-function myplugin_update_movie_title_placeholder() {
+function myplugin_update_movie_title_placeholder($title) {
     $screen = get_current_screen();
     if( 'movie' === $screen->post_type ) {
         $title = 'Add movie name';
